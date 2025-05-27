@@ -17,6 +17,20 @@ def get_admin_user(current_user: dict = Depends(get_current_user)):
 
 
 
+def get_admin_or_student_user(current_user: dict = Depends(get_current_user)):
+    if current_user["role"] not in ["admin", "student"]:
+        raise HTTPException(status_code=403, detail="No tienes permisos de administrador o estudiante")
+    return current_user
+
+
+
+def get_admin_or_teacher_user(current_user: dict = Depends(get_current_user)):
+    if current_user["role"] not in ["admin", "teacher"]:
+        raise HTTPException(status_code=403, detail="No tienes permisos de administrador o docente")
+    return current_user
+
+
+
 def get_teacher_user(current_user: dict = Depends(get_current_user)):
     if current_user["role"] != "teacher":
         raise HTTPException(status_code=403, detail="No tienes permisos de docente")

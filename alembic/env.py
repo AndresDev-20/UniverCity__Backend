@@ -11,6 +11,10 @@ from app.db.base_class import Base
 
 # Importacion de los modelos
 from app.models.user import User
+from app.models.program import Program
+from app.models.semesters import Semester
+from app.models.grade import Grade
+from app.models.association import teachers_programs
 
 # Cargamos las variables del .env
 load_dotenv()
